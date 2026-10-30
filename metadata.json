@@ -1,0 +1,6 @@
+{
+  "name": "Intelligent Student Performance Analytics System",
+  "description": "AI-powered college academic performance monitoring, prediction, attendance tracking, and personalized recommendation platform.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

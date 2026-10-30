@@ -1,0 +1,913 @@
+import { Student, UserAccount } from '../types/student';
+
+export const INITIAL_STUDENTS: Student[] = [
+  {
+    id: 'std-001',
+    rollNo: 'CS-2022-042',
+    name: 'Aarav Sharma',
+    email: 'aarav.sharma@college.edu',
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+    course: 'B.Tech Computer Science & Engineering',
+    semester: 'Semester 6',
+    section: 'CSE-A',
+    cgpa: 9.15,
+    overallPercentage: 91.2,
+    attendancePercentage: 94.5,
+    performanceStatus: 'Excellent',
+    riskLevel: 'Low',
+    mentorName: 'Dr. Rajesh Kulkarni',
+    phone: '+91 98765 43210',
+    subjects: [
+      {
+        code: 'CS601',
+        name: 'Machine Learning',
+        credits: 4,
+        internalMarks: 29,
+        externalMarks: 65,
+        totalMarks: 94,
+        grade: 'A+',
+        attendanceAttended: 44,
+        attendanceTotal: 46,
+        attendancePercentage: 95.6,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Support Vector Machines Optimization'],
+        strongTopics: ['Neural Networks', 'Decision Trees', 'Model Evaluation']
+      },
+      {
+        code: 'CS602',
+        name: 'Design & Analysis of Algorithms',
+        credits: 4,
+        internalMarks: 28,
+        externalMarks: 62,
+        totalMarks: 90,
+        grade: 'A+',
+        attendanceAttended: 42,
+        attendanceTotal: 44,
+        attendancePercentage: 95.4,
+        assignmentsSubmitted: 6,
+        assignmentsTotal: 6,
+        weakTopics: ['Amortized Complexity Analysis'],
+        strongTopics: ['Dynamic Programming', 'Graph Theory', 'Greedy Algorithms']
+      },
+      {
+        code: 'CS603',
+        name: 'Cloud Computing & DevOps',
+        credits: 3,
+        internalMarks: 27,
+        externalMarks: 64,
+        totalMarks: 91,
+        grade: 'A+',
+        attendanceAttended: 38,
+        attendanceTotal: 40,
+        attendancePercentage: 95.0,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Kubernetes Helm Charts'],
+        strongTopics: ['Containerization', 'CI/CD Pipelines', 'AWS Architecture']
+      },
+      {
+        code: 'CS604',
+        name: 'Computer Networks',
+        credits: 3,
+        internalMarks: 28,
+        externalMarks: 60,
+        totalMarks: 88,
+        grade: 'A',
+        attendanceAttended: 36,
+        attendanceTotal: 38,
+        attendancePercentage: 94.7,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['BGP Routing Protocols'],
+        strongTopics: ['TCP/IP Stack', 'Subnetting', 'Socket Programming']
+      },
+      {
+        code: 'CS605',
+        name: 'Cyber Security & Cryptography',
+        credits: 3,
+        internalMarks: 28,
+        externalMarks: 65,
+        totalMarks: 93,
+        grade: 'A+',
+        attendanceAttended: 35,
+        attendanceTotal: 38,
+        attendancePercentage: 92.1,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Elliptic Curve Cryptography'],
+        strongTopics: ['RSA & AES Encryption', 'Firewalls', 'Penetration Testing']
+      }
+    ],
+    semesterHistory: [
+      { semester: 'Sem 1', sgpa: 8.8, percentage: 86.5, attendance: 92, creditsEarned: 22 },
+      { semester: 'Sem 2', sgpa: 9.0, percentage: 88.0, attendance: 93, creditsEarned: 22 },
+      { semester: 'Sem 3', sgpa: 9.1, percentage: 89.5, attendance: 95, creditsEarned: 24 },
+      { semester: 'Sem 4', sgpa: 9.3, percentage: 92.0, attendance: 96, creditsEarned: 24 },
+      { semester: 'Sem 5', sgpa: 9.2, percentage: 91.0, attendance: 94, creditsEarned: 22 },
+      { semester: 'Sem 6', sgpa: 9.4, percentage: 91.2, attendance: 94.5, creditsEarned: 20 }
+    ],
+    monthlyAttendance: [
+      { month: 'Jul', attended: 22, total: 23, percentage: 95.6 },
+      { month: 'Aug', attended: 25, total: 26, percentage: 96.1 },
+      { month: 'Sep', attended: 23, total: 25, percentage: 92.0 },
+      { month: 'Oct', attended: 24, total: 25, percentage: 96.0 },
+      { month: 'Nov', attended: 20, total: 21, percentage: 95.2 },
+      { month: 'Dec', attended: 18, total: 19, percentage: 94.7 }
+    ],
+    aiPrediction: {
+      predictedNextSGPA: 9.35,
+      predictedNextPercentage: 92.8,
+      riskAssessment: 'Low Risk',
+      confidenceScore: 94,
+      predictedGrade: 'A+ (Distinction)',
+      backlogProbability: 1.2,
+      weakSubjects: ['Amortized Complexity in CS602'],
+      strongSubjects: ['Machine Learning', 'Cloud Computing', 'Cyber Security'],
+      personalizedRecommendations: [
+        'Eligible for Dean’s Honor List and Research Fellowship track.',
+        'Consider participating in national-level algorithmic hackathons and open-source contributions.',
+        'Strengthen theoretical proof foundations for Amortized Analysis in advanced algorithms.'
+      ],
+      studyPlan: [
+        { day: 'Monday', focus: 'Machine Learning Deep Dive & Math', hours: 2.5 },
+        { day: 'Tuesday', focus: 'DevOps & Cloud Lab Practice', hours: 2.0 },
+        { day: 'Wednesday', focus: 'Algorithms Coding & LeetCode Hard', hours: 3.0 },
+        { day: 'Thursday', focus: 'Computer Networks Packet Tracing', hours: 2.0 },
+        { day: 'Friday', focus: 'Cyber Security Cryptography Proofs', hours: 2.0 },
+        { day: 'Weekend', focus: 'Capstone Project & Paper Revision', hours: 4.0 }
+      ],
+      whatIfScenarios: [
+        { scenario: 'Maintain current 94%+ attendance and submit honors assignment', expectedOutcome: 'Projected SGPA rises to 9.50 with top university rank.' },
+        { scenario: 'Miss remaining 4 internal lab assessments', expectedOutcome: 'SGPA likely drops to 8.90, losing Dean’s medal eligibility.' }
+      ]
+    },
+    activities: [
+      { id: 'act-1', date: '2026-10-28', type: 'exam', title: 'Mid-Term Exam Results Published', description: 'Scored 29/30 in Machine Learning internal test.', score: '29/30', statusBadge: 'Top 2%' },
+      { id: 'act-2', date: '2026-10-25', type: 'ai_insight', title: 'AI Performance Forecast Updated', description: 'Predicted 9.35 SGPA with 94% ML model confidence.', statusBadge: 'High Confidence' },
+      { id: 'act-3', date: '2026-10-20', type: 'assignment', title: 'Kubernetes Cluster Deployment Submitted', description: 'Lab assignment 4 submitted 2 days ahead of deadline.', score: '10/10' },
+      { id: 'act-4', date: '2026-10-15', type: 'attendance', title: 'Perfect Attendance Week', description: '100% attendance achieved for the 4th consecutive week.', statusBadge: 'Honors' }
+    ]
+  },
+  {
+    id: 'std-002',
+    rollNo: 'CS-2022-115',
+    name: 'Rahul Verma',
+    email: 'rahul.verma@college.edu',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+    course: 'B.Tech Computer Science & Engineering',
+    semester: 'Semester 6',
+    section: 'CSE-B',
+    cgpa: 5.62,
+    overallPercentage: 54.2,
+    attendancePercentage: 63.8,
+    performanceStatus: 'Needs Improvement',
+    riskLevel: 'Critical',
+    mentorName: 'Prof. Sunita Menon',
+    phone: '+91 97654 32109',
+    subjects: [
+      {
+        code: 'CS601',
+        name: 'Machine Learning',
+        credits: 4,
+        internalMarks: 16,
+        externalMarks: 38,
+        totalMarks: 54,
+        grade: 'C',
+        attendanceAttended: 29,
+        attendanceTotal: 46,
+        attendancePercentage: 63.0,
+        assignmentsSubmitted: 2,
+        assignmentsTotal: 5,
+        weakTopics: ['Backpropagation', 'Gradient Descent', 'Hyperparameter Tuning'],
+        strongTopics: ['Linear Regression basics']
+      },
+      {
+        code: 'CS602',
+        name: 'Design & Analysis of Algorithms',
+        credits: 4,
+        internalMarks: 14,
+        externalMarks: 32,
+        totalMarks: 46,
+        grade: 'D',
+        attendanceAttended: 26,
+        attendanceTotal: 44,
+        attendancePercentage: 59.1,
+        assignmentsSubmitted: 2,
+        assignmentsTotal: 6,
+        weakTopics: ['NP-Completeness', 'Dynamic Programming', 'Graph Traversals'],
+        strongTopics: ['Sorting algorithms']
+      },
+      {
+        code: 'CS603',
+        name: 'Cloud Computing & DevOps',
+        credits: 3,
+        internalMarks: 19,
+        externalMarks: 41,
+        totalMarks: 60,
+        grade: 'C',
+        attendanceAttended: 28,
+        attendanceTotal: 40,
+        attendancePercentage: 70.0,
+        assignmentsSubmitted: 3,
+        assignmentsTotal: 4,
+        weakTopics: ['Docker Swarm', 'Continuous Integration'],
+        strongTopics: ['Virtualization basics']
+      },
+      {
+        code: 'CS604',
+        name: 'Computer Networks',
+        credits: 3,
+        internalMarks: 17,
+        externalMarks: 36,
+        totalMarks: 53,
+        grade: 'C',
+        attendanceAttended: 24,
+        attendanceTotal: 38,
+        attendancePercentage: 63.1,
+        assignmentsSubmitted: 2,
+        assignmentsTotal: 4,
+        weakTopics: ['Subnet Mask Calculation', 'Flow & Error Control', 'TCP Three-Way Handshake'],
+        strongTopics: ['OSI Model layers']
+      },
+      {
+        code: 'CS605',
+        name: 'Cyber Security & Cryptography',
+        credits: 3,
+        internalMarks: 18,
+        externalMarks: 40,
+        totalMarks: 58,
+        grade: 'C',
+        attendanceAttended: 25,
+        attendanceTotal: 38,
+        attendancePercentage: 65.8,
+        assignmentsSubmitted: 3,
+        assignmentsTotal: 5,
+        weakTopics: ['Public Key Infrastructure', 'Symmetric Ciphers'],
+        strongTopics: ['Password policies & Hashing basics']
+      }
+    ],
+    semesterHistory: [
+      { semester: 'Sem 1', sgpa: 6.8, percentage: 65.0, attendance: 78, creditsEarned: 22 },
+      { semester: 'Sem 2', sgpa: 6.2, percentage: 60.5, attendance: 72, creditsEarned: 20 },
+      { semester: 'Sem 3', sgpa: 5.9, percentage: 58.0, attendance: 68, creditsEarned: 20 },
+      { semester: 'Sem 4', sgpa: 5.7, percentage: 56.0, attendance: 65, creditsEarned: 18 },
+      { semester: 'Sem 5', sgpa: 5.5, percentage: 53.5, attendance: 62, creditsEarned: 18 },
+      { semester: 'Sem 6', sgpa: 5.3, percentage: 54.2, attendance: 63.8, creditsEarned: 16 }
+    ],
+    monthlyAttendance: [
+      { month: 'Jul', attended: 15, total: 23, percentage: 65.2 },
+      { month: 'Aug', attended: 16, total: 26, percentage: 61.5 },
+      { month: 'Sep', attended: 14, total: 25, percentage: 56.0 },
+      { month: 'Oct', attended: 17, total: 25, percentage: 68.0 },
+      { month: 'Nov', attended: 13, total: 21, percentage: 61.9 },
+      { month: 'Dec', attended: 12, total: 19, percentage: 63.1 }
+    ],
+    aiPrediction: {
+      predictedNextSGPA: 5.15,
+      predictedNextPercentage: 51.5,
+      riskAssessment: 'High Risk',
+      confidenceScore: 89,
+      predictedGrade: 'D (Backlog Warning)',
+      backlogProbability: 78.4,
+      weakSubjects: ['Design & Analysis of Algorithms', 'Computer Networks', 'Machine Learning'],
+      strongSubjects: ['Cloud Computing basics'],
+      personalizedRecommendations: [
+        'CRITICAL: Attendance is at 63.8% (below the statutory 75% college examination threshold). Attend all remaining 28 classes to regain exam eligibility.',
+        'High risk of semester backlog in CS602 (Algorithms) — currently scoring 46/100.',
+        'Schedule mandatory 1-on-1 remedial counseling with Faculty Advisor Prof. Sunita Menon.',
+        'Submit pending 6 overdue lab assignments within 7 days for 15 makeup internal points.'
+      ],
+      studyPlan: [
+        { day: 'Monday', focus: 'Algorithms Remedial Sessions (DP & Trees)', hours: 2.5 },
+        { day: 'Tuesday', focus: 'Machine Learning Lab catch-up', hours: 2.0 },
+        { day: 'Wednesday', focus: 'Computer Networks Numerical & Subnetting', hours: 2.5 },
+        { day: 'Thursday', focus: 'Peer Mentoring Group on Algorithms', hours: 2.0 },
+        { day: 'Friday', focus: 'Cyber Security Cryptography practice', hours: 1.5 },
+        { day: 'Weekend', focus: 'Submit Overdue Assignments & Revision', hours: 5.0 }
+      ],
+      whatIfScenarios: [
+        { scenario: 'Attend next 25 consecutive classes & complete 4 pending assignments', expectedOutcome: 'Attendance rises to 76.5% (restoring hall ticket eligibility) and projected score recovers to 61% (Grade C+).' },
+        { scenario: 'Miss 5 more classes in Algorithms and Networks', expectedOutcome: 'Attendance collapses to 58%, triggering automatic exam debarment in both courses.' }
+      ]
+    },
+    activities: [
+      { id: 'act-r1', date: '2026-10-27', type: 'alert', title: 'Low Attendance Caution Notice', description: 'Attendance has fallen below the 75% university eligibility requirement (Current: 63.8%).', statusBadge: 'Critical Alert' },
+      { id: 'act-r2', date: '2026-10-22', type: 'assignment', title: 'Overdue Assignment Notice: CS602', description: 'Dynamic Programming problem sheet 3 is 5 days overdue.', score: 'Pending' },
+      { id: 'act-r3', date: '2026-10-18', type: 'exam', title: 'Mid-Term 1 Marks Released', description: 'Scored 14/30 in Design and Analysis of Algorithms internal assessment.', score: '14/30', statusBadge: 'Remedial Needed' },
+      { id: 'act-r4', date: '2026-10-10', type: 'ai_insight', title: 'AI Early Warning Triggered', description: 'System flagged high backlog risk (78.4%) based on current pace.', statusBadge: 'Action Required' }
+    ]
+  },
+  {
+    id: 'std-003',
+    rollNo: 'CS-2022-089',
+    name: 'Priya Patel',
+    email: 'priya.patel@college.edu',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+    course: 'B.Tech Computer Science & Engineering',
+    semester: 'Semester 6',
+    section: 'CSE-A',
+    cgpa: 8.52,
+    overallPercentage: 84.5,
+    attendancePercentage: 88.2,
+    performanceStatus: 'Good',
+    riskLevel: 'Low',
+    mentorName: 'Dr. Rajesh Kulkarni',
+    phone: '+91 98123 45678',
+    subjects: [
+      {
+        code: 'CS601',
+        name: 'Machine Learning',
+        credits: 4,
+        internalMarks: 26,
+        externalMarks: 59,
+        totalMarks: 85,
+        grade: 'A',
+        attendanceAttended: 41,
+        attendanceTotal: 46,
+        attendancePercentage: 89.1,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Convolutional Neural Networks Filters'],
+        strongTopics: ['Supervised Learning', 'Clustering']
+      },
+      {
+        code: 'CS602',
+        name: 'Design & Analysis of Algorithms',
+        credits: 4,
+        internalMarks: 25,
+        externalMarks: 58,
+        totalMarks: 83,
+        grade: 'A',
+        attendanceAttended: 39,
+        attendanceTotal: 44,
+        attendancePercentage: 88.6,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 6,
+        weakTopics: ['Ford-Fulkerson Network Flow'],
+        strongTopics: ['Shortest Paths', 'Binary Search Trees']
+      },
+      {
+        code: 'CS603',
+        name: 'Cloud Computing & DevOps',
+        credits: 3,
+        internalMarks: 27,
+        externalMarks: 61,
+        totalMarks: 88,
+        grade: 'A',
+        attendanceAttended: 35,
+        attendanceTotal: 40,
+        attendancePercentage: 87.5,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Serverless Architecture'],
+        strongTopics: ['Docker', 'AWS S3', 'Terraform basics']
+      },
+      {
+        code: 'CS604',
+        name: 'Computer Networks',
+        credits: 3,
+        internalMarks: 26,
+        externalMarks: 57,
+        totalMarks: 83,
+        grade: 'A',
+        attendanceAttended: 34,
+        attendanceTotal: 38,
+        attendancePercentage: 89.4,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Congestion Control Algorithms'],
+        strongTopics: ['IP Addressing', 'DNS', 'HTTP/HTTPS']
+      },
+      {
+        code: 'CS605',
+        name: 'Cyber Security & Cryptography',
+        credits: 3,
+        internalMarks: 25,
+        externalMarks: 59,
+        totalMarks: 84,
+        grade: 'A',
+        attendanceAttended: 33,
+        attendanceTotal: 38,
+        attendancePercentage: 86.8,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Zero-Knowledge Proofs'],
+        strongTopics: ['Digital Signatures', 'Hash Functions']
+      }
+    ],
+    semesterHistory: [
+      { semester: 'Sem 1', sgpa: 8.2, percentage: 80.0, attendance: 86, creditsEarned: 22 },
+      { semester: 'Sem 2', sgpa: 8.3, percentage: 82.5, attendance: 88, creditsEarned: 22 },
+      { semester: 'Sem 3', sgpa: 8.5, percentage: 84.0, attendance: 89, creditsEarned: 24 },
+      { semester: 'Sem 4', sgpa: 8.6, percentage: 85.5, attendance: 87, creditsEarned: 24 },
+      { semester: 'Sem 5', sgpa: 8.4, percentage: 83.5, attendance: 88, creditsEarned: 22 },
+      { semester: 'Sem 6', sgpa: 8.6, percentage: 84.5, attendance: 88.2, creditsEarned: 20 }
+    ],
+    monthlyAttendance: [
+      { month: 'Jul', attended: 20, total: 23, percentage: 86.9 },
+      { month: 'Aug', attended: 23, total: 26, percentage: 88.4 },
+      { month: 'Sep', attended: 22, total: 25, percentage: 88.0 },
+      { month: 'Oct', attended: 23, total: 25, percentage: 92.0 },
+      { month: 'Nov', attended: 18, total: 21, percentage: 85.7 },
+      { month: 'Dec', attended: 17, total: 19, percentage: 89.4 }
+    ],
+    aiPrediction: {
+      predictedNextSGPA: 8.75,
+      predictedNextPercentage: 86.2,
+      riskAssessment: 'Low Risk',
+      confidenceScore: 91,
+      predictedGrade: 'A (First Class with Distinction)',
+      backlogProbability: 2.8,
+      weakSubjects: ['Network Flow Algorithms'],
+      strongSubjects: ['Cloud Computing', 'Machine Learning', 'Computer Networks'],
+      personalizedRecommendations: [
+        'Steady upward trajectory across all semesters.',
+        'Targeting 3-4 more points in external exams could transition overall grade to A+ (9.0+ SGPA).',
+        'Solve previous 5 years of university question papers for Algorithm design proofs.'
+      ],
+      studyPlan: [
+        { day: 'Monday', focus: 'Algorithms Proofs & Complex Problems', hours: 2.0 },
+        { day: 'Tuesday', focus: 'Machine Learning Deep Learning Architectures', hours: 2.0 },
+        { day: 'Wednesday', focus: 'Cloud Architecture Hands-on Projects', hours: 2.0 },
+        { day: 'Thursday', focus: 'Computer Networks Protocols', hours: 1.5 },
+        { day: 'Friday', focus: 'Security Lab Experiments', hours: 1.5 },
+        { day: 'Weekend', focus: 'Mock Tests & Research Review', hours: 3.5 }
+      ],
+      whatIfScenarios: [
+        { scenario: 'Score 65+ in Algorithms external paper', expectedOutcome: 'SGPA reaches 8.95 and enters Department Top 5% ranking.' }
+      ]
+    },
+    activities: [
+      { id: 'act-p1', date: '2026-10-27', type: 'assignment', title: 'ML Clustering Lab Submitted', description: 'Scored 10/10 with bonus implementation of DBSCAN.', score: '10/10' },
+      { id: 'act-p2', date: '2026-10-19', type: 'exam', title: 'Mid-Term 1 Results', description: 'Consistently scored 25+ across all 5 subjects.', statusBadge: 'Consistent' }
+    ]
+  },
+  {
+    id: 'std-004',
+    rollNo: 'AI-2023-018',
+    name: 'Ananya Iyer',
+    email: 'ananya.iyer@college.edu',
+    avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&auto=format&fit=crop&q=80',
+    course: 'B.Tech Artificial Intelligence & Data Science',
+    semester: 'Semester 4',
+    section: 'AI-A',
+    cgpa: 7.95,
+    overallPercentage: 78.4,
+    attendancePercentage: 81.5,
+    performanceStatus: 'Good',
+    riskLevel: 'Low',
+    mentorName: 'Dr. Vivek Raman',
+    phone: '+91 99887 76655',
+    subjects: [
+      {
+        code: 'AI401',
+        name: 'Probability & Statistics for AI',
+        credits: 4,
+        internalMarks: 24,
+        externalMarks: 54,
+        totalMarks: 78,
+        grade: 'B+',
+        attendanceAttended: 38,
+        attendanceTotal: 46,
+        attendancePercentage: 82.6,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Bayesian Inference', 'Markov Chains'],
+        strongTopics: ['Hypothesis Testing', 'Distributions']
+      },
+      {
+        code: 'AI402',
+        name: 'Data Structures & Algorithms in Python',
+        credits: 4,
+        internalMarks: 26,
+        externalMarks: 56,
+        totalMarks: 82,
+        grade: 'A',
+        attendanceAttended: 37,
+        attendanceTotal: 44,
+        attendancePercentage: 84.0,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Segment Trees'],
+        strongTopics: ['Hash Maps', 'Heaps', 'Recursion']
+      },
+      {
+        code: 'AI403',
+        name: 'Data Science & Visualization',
+        credits: 3,
+        internalMarks: 26,
+        externalMarks: 58,
+        totalMarks: 84,
+        grade: 'A',
+        attendanceAttended: 32,
+        attendanceTotal: 40,
+        attendancePercentage: 80.0,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Interactive Dashboards with Plotly'],
+        strongTopics: ['Pandas', 'Seaborn', 'Exploratory Data Analysis']
+      },
+      {
+        code: 'AI404',
+        name: 'Database Management Systems',
+        credits: 3,
+        internalMarks: 23,
+        externalMarks: 49,
+        totalMarks: 72,
+        grade: 'B',
+        attendanceAttended: 30,
+        attendanceTotal: 38,
+        attendancePercentage: 78.9,
+        assignmentsSubmitted: 3,
+        assignmentsTotal: 4,
+        weakTopics: ['Normalization 4NF/BCNF', 'Query Optimization'],
+        strongTopics: ['SQL Joins', 'ER Modeling']
+      },
+      {
+        code: 'AI405',
+        name: 'Artificial Intelligence Foundations',
+        credits: 3,
+        internalMarks: 24,
+        externalMarks: 52,
+        totalMarks: 76,
+        grade: 'B+',
+        attendanceAttended: 31,
+        attendanceTotal: 38,
+        attendancePercentage: 81.5,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['A* Heuristic Admissibility'],
+        strongTopics: ['Search Strategies', 'Knowledge Representation']
+      }
+    ],
+    semesterHistory: [
+      { semester: 'Sem 1', sgpa: 7.6, percentage: 74.5, attendance: 80, creditsEarned: 22 },
+      { semester: 'Sem 2', sgpa: 7.8, percentage: 77.0, attendance: 82, creditsEarned: 22 },
+      { semester: 'Sem 3', sgpa: 8.1, percentage: 80.2, attendance: 83, creditsEarned: 24 },
+      { semester: 'Sem 4', sgpa: 7.95, percentage: 78.4, attendance: 81.5, creditsEarned: 22 }
+    ],
+    monthlyAttendance: [
+      { month: 'Jul', attended: 19, total: 23, percentage: 82.6 },
+      { month: 'Aug', attended: 21, total: 26, percentage: 80.7 },
+      { month: 'Sep', attended: 21, total: 25, percentage: 84.0 },
+      { month: 'Oct', attended: 20, total: 25, percentage: 80.0 },
+      { month: 'Nov', attended: 17, total: 21, percentage: 80.9 },
+      { month: 'Dec', attended: 15, total: 19, percentage: 78.9 }
+    ],
+    aiPrediction: {
+      predictedNextSGPA: 8.25,
+      predictedNextPercentage: 81.5,
+      riskAssessment: 'Low Risk',
+      confidenceScore: 88,
+      predictedGrade: 'A (Very Good)',
+      backlogProbability: 4.5,
+      weakSubjects: ['Database Normalization & Query Tuning'],
+      strongSubjects: ['Data Science & Visualization', 'Python Algorithms'],
+      personalizedRecommendations: [
+        'Practice SQL subqueries and indexing optimizations to raise DBMS score from 72 to 80+.',
+        'Good programming foundation; expand into Kaggle tabular benchmarks.',
+        'Maintain attendance above 80% to retain internal marks buffer.'
+      ],
+      studyPlan: [
+        { day: 'Monday', focus: 'Probability & Distributions Theory', hours: 2.0 },
+        { day: 'Tuesday', focus: 'SQL Query Tuning & Schema Normalization', hours: 2.0 },
+        { day: 'Wednesday', focus: 'Python Data Structures LeetCode', hours: 2.0 },
+        { day: 'Thursday', focus: 'AI Search Algorithms & Heuristics', hours: 1.5 },
+        { day: 'Friday', focus: 'Data Science Mini Projects', hours: 2.0 },
+        { day: 'Weekend', focus: 'Revision & Mock Assessments', hours: 3.0 }
+      ]
+    },
+    activities: [
+      { id: 'act-a1', date: '2026-10-26', type: 'assignment', title: 'EDA Case Study Submitted', description: 'Presented customer churn prediction notebook with 92% ROC-AUC.', score: '9.5/10' }
+    ]
+  },
+  {
+    id: 'std-005',
+    rollNo: 'IT-2022-064',
+    name: 'Rohan Gupta',
+    email: 'rohan.gupta@college.edu',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+    course: 'B.Tech Information Technology',
+    semester: 'Semester 6',
+    section: 'IT-A',
+    cgpa: 6.75,
+    overallPercentage: 65.5,
+    attendancePercentage: 72.4,
+    performanceStatus: 'Average',
+    riskLevel: 'Moderate',
+    mentorName: 'Prof. Sandeep Verma',
+    phone: '+91 97112 23344',
+    subjects: [
+      {
+        code: 'IT601',
+        name: 'Full Stack Web Development',
+        credits: 4,
+        internalMarks: 24,
+        externalMarks: 50,
+        totalMarks: 74,
+        grade: 'B+',
+        attendanceAttended: 35,
+        attendanceTotal: 46,
+        attendancePercentage: 76.0,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 5,
+        weakTopics: ['SSR and Server Actions'],
+        strongTopics: ['React UI', 'REST APIs']
+      },
+      {
+        code: 'IT602',
+        name: 'Information Security',
+        credits: 4,
+        internalMarks: 18,
+        externalMarks: 41,
+        totalMarks: 59,
+        grade: 'C',
+        attendanceAttended: 30,
+        attendanceTotal: 44,
+        attendancePercentage: 68.1,
+        assignmentsSubmitted: 3,
+        assignmentsTotal: 5,
+        weakTopics: ['Asymmetric Cryptanalysis', 'Buffer Overflow exploits'],
+        strongTopics: ['Network Firewalls']
+      },
+      {
+        code: 'IT603',
+        name: 'Distributed Systems',
+        credits: 3,
+        internalMarks: 19,
+        externalMarks: 44,
+        totalMarks: 63,
+        grade: 'B',
+        attendanceAttended: 28,
+        attendanceTotal: 40,
+        attendancePercentage: 70.0,
+        assignmentsSubmitted: 3,
+        assignmentsTotal: 4,
+        weakTopics: ['Raft Consensus Algorithm', 'Vector Clocks'],
+        strongTopics: ['RPC mechanisms']
+      },
+      {
+        code: 'IT604',
+        name: 'Data Warehousing & Mining',
+        credits: 3,
+        internalMarks: 21,
+        externalMarks: 47,
+        totalMarks: 68,
+        grade: 'B',
+        attendanceAttended: 29,
+        attendanceTotal: 38,
+        attendancePercentage: 76.3,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Apriori association rule pruning'],
+        strongTopics: ['Data cleaning', 'Star schema']
+      },
+      {
+        code: 'IT605',
+        name: 'Mobile Application Development',
+        credits: 3,
+        internalMarks: 21,
+        externalMarks: 42,
+        totalMarks: 63,
+        grade: 'B',
+        attendanceAttended: 27,
+        attendanceTotal: 38,
+        attendancePercentage: 71.0,
+        assignmentsSubmitted: 3,
+        assignmentsTotal: 4,
+        weakTopics: ['State Management in Flutter/Compose'],
+        strongTopics: ['UI Layouts', 'Navigation']
+      }
+    ],
+    semesterHistory: [
+      { semester: 'Sem 1', sgpa: 7.0, percentage: 68.0, attendance: 75, creditsEarned: 22 },
+      { semester: 'Sem 2', sgpa: 6.9, percentage: 67.0, attendance: 74, creditsEarned: 22 },
+      { semester: 'Sem 3', sgpa: 6.8, percentage: 66.0, attendance: 73, creditsEarned: 24 },
+      { semester: 'Sem 4', sgpa: 6.6, percentage: 64.0, attendance: 71, creditsEarned: 22 },
+      { semester: 'Sem 5', sgpa: 6.7, percentage: 65.0, attendance: 72, creditsEarned: 22 },
+      { semester: 'Sem 6', sgpa: 6.75, percentage: 65.5, attendance: 72.4, creditsEarned: 20 }
+    ],
+    monthlyAttendance: [
+      { month: 'Jul', attended: 17, total: 23, percentage: 73.9 },
+      { month: 'Aug', attended: 19, total: 26, percentage: 73.0 },
+      { month: 'Sep', attended: 18, total: 25, percentage: 72.0 },
+      { month: 'Oct', attended: 18, total: 25, percentage: 72.0 },
+      { month: 'Nov', attended: 15, total: 21, percentage: 71.4 },
+      { month: 'Dec', attended: 13, total: 19, percentage: 68.4 }
+    ],
+    aiPrediction: {
+      predictedNextSGPA: 6.95,
+      predictedNextPercentage: 67.2,
+      riskAssessment: 'Medium Risk',
+      confidenceScore: 86,
+      predictedGrade: 'B (Second Class)',
+      backlogProbability: 24.5,
+      weakSubjects: ['Information Security', 'Distributed Systems'],
+      strongSubjects: ['Full Stack Web Development'],
+      personalizedRecommendations: [
+        'Attendance is at 72.4%, hovering below the 75% margin. Attend 6 consecutive lectures to clear the probation warning.',
+        'Needs reinforcement on Distributed Consensus (Raft/Paxos) and Cryptanalysis algorithms.',
+        'Leverage strong web skills to score high in internal project evaluations.'
+      ],
+      studyPlan: [
+        { day: 'Monday', focus: 'Information Security Cryptanalysis problems', hours: 2.0 },
+        { day: 'Tuesday', focus: 'Distributed Systems Raft Consensus study', hours: 2.0 },
+        { day: 'Wednesday', focus: 'Full Stack Web Project & Lab work', hours: 2.0 },
+        { day: 'Thursday', focus: 'Data Mining Association Rules drills', hours: 1.5 },
+        { day: 'Friday', focus: 'Mobile App Architecture & State', hours: 1.5 },
+        { day: 'Weekend', focus: 'Revision & Attendance Catch-up', hours: 3.5 }
+      ]
+    },
+    activities: [
+      { id: 'act-rg1', date: '2026-10-24', type: 'alert', title: 'Attendance Warning (72.4%)', description: 'Requires 4 more attended classes to reach safe 75% threshold.', statusBadge: 'Warning' }
+    ]
+  },
+  {
+    id: 'std-006',
+    rollNo: 'CS-2023-033',
+    name: 'Sneha Mukherjee',
+    email: 'sneha.mukherjee@college.edu',
+    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&auto=format&fit=crop&q=80',
+    course: 'B.Tech Computer Science & Engineering',
+    semester: 'Semester 4',
+    section: 'CSE-B',
+    cgpa: 8.92,
+    overallPercentage: 89.0,
+    attendancePercentage: 92.4,
+    performanceStatus: 'Excellent',
+    riskLevel: 'Low',
+    mentorName: 'Prof. Sunita Menon',
+    phone: '+91 98334 45566',
+    subjects: [
+      {
+        code: 'CS401',
+        name: 'Operating Systems',
+        credits: 4,
+        internalMarks: 28,
+        externalMarks: 61,
+        totalMarks: 89,
+        grade: 'A+',
+        attendanceAttended: 43,
+        attendanceTotal: 46,
+        attendancePercentage: 93.4,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Memory Paging Page Replacement Proofs'],
+        strongTopics: ['Process Synchronization', 'Deadlocks', 'Semaphores']
+      },
+      {
+        code: 'CS402',
+        name: 'Database Management Systems',
+        credits: 4,
+        internalMarks: 27,
+        externalMarks: 63,
+        totalMarks: 90,
+        grade: 'A+',
+        attendanceAttended: 41,
+        attendanceTotal: 44,
+        attendancePercentage: 93.1,
+        assignmentsSubmitted: 5,
+        assignmentsTotal: 5,
+        weakTopics: ['Concurrency Control Serializability'],
+        strongTopics: ['SQL Complex Joins', 'Indexing B+ Trees']
+      },
+      {
+        code: 'CS403',
+        name: 'Theory of Computation',
+        credits: 4,
+        internalMarks: 26,
+        externalMarks: 59,
+        totalMarks: 85,
+        grade: 'A',
+        attendanceAttended: 36,
+        attendanceTotal: 40,
+        attendancePercentage: 90.0,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Pumping Lemma for Context Free Languages'],
+        strongTopics: ['DFA / NFA conversion', 'Turing Machines']
+      },
+      {
+        code: 'CS404',
+        name: 'Computer Organization & Architecture',
+        credits: 3,
+        internalMarks: 27,
+        externalMarks: 62,
+        totalMarks: 89,
+        grade: 'A+',
+        attendanceAttended: 35,
+        attendanceTotal: 38,
+        attendancePercentage: 92.1,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Pipelining Hazards handling'],
+        strongTopics: ['Cache Memory', 'ALU design']
+      },
+      {
+        code: 'CS405',
+        name: 'Software Engineering & Agile',
+        credits: 3,
+        internalMarks: 28,
+        externalMarks: 64,
+        totalMarks: 92,
+        grade: 'A+',
+        attendanceAttended: 36,
+        attendanceTotal: 38,
+        attendancePercentage: 94.7,
+        assignmentsSubmitted: 4,
+        assignmentsTotal: 4,
+        weakTopics: ['Formal Verification'],
+        strongTopics: ['Scrum Framework', 'UML Diagrams', 'Design Patterns']
+      }
+    ],
+    semesterHistory: [
+      { semester: 'Sem 1', sgpa: 8.6, percentage: 85.0, attendance: 90, creditsEarned: 22 },
+      { semester: 'Sem 2', sgpa: 8.8, percentage: 87.5, attendance: 91, creditsEarned: 22 },
+      { semester: 'Sem 3', sgpa: 9.1, percentage: 90.0, attendance: 93, creditsEarned: 24 },
+      { semester: 'Sem 4', sgpa: 8.95, percentage: 89.0, attendance: 92.4, creditsEarned: 22 }
+    ],
+    monthlyAttendance: [
+      { month: 'Jul', attended: 21, total: 23, percentage: 91.3 },
+      { month: 'Aug', attended: 24, total: 26, percentage: 92.3 },
+      { month: 'Sep', attended: 23, total: 25, percentage: 92.0 },
+      { month: 'Oct', attended: 24, total: 25, percentage: 96.0 },
+      { month: 'Nov', attended: 19, total: 21, percentage: 90.4 },
+      { month: 'Dec', attended: 18, total: 19, percentage: 94.7 }
+    ],
+    aiPrediction: {
+      predictedNextSGPA: 9.15,
+      predictedNextPercentage: 90.5,
+      riskAssessment: 'Low Risk',
+      confidenceScore: 93,
+      predictedGrade: 'A+ (Distinction)',
+      backlogProbability: 1.5,
+      weakSubjects: ['Pumping Lemma in Theory of Computation'],
+      strongSubjects: ['Operating Systems', 'Database Systems', 'Software Engineering'],
+      personalizedRecommendations: [
+        'Exemplary conceptual clarity in core system fundamentals.',
+        'Focus on formal language proof constructions to achieve 90+ in Theory of Computation.',
+        'Recommended for departmental teaching assistantship in Operating Systems Lab.'
+      ],
+      studyPlan: [
+        { day: 'Monday', focus: 'OS Kernel synchronization primitives', hours: 2.0 },
+        { day: 'Tuesday', focus: 'TOC Pumping Lemma and closure properties', hours: 2.5 },
+        { day: 'Wednesday', focus: 'DBMS B+ Tree and WAL logging', hours: 2.0 },
+        { day: 'Thursday', focus: 'Computer Architecture instruction pipelining', hours: 1.5 },
+        { day: 'Friday', focus: 'Software Design Patterns practical sprint', hours: 1.5 },
+        { day: 'Weekend', focus: 'Competitive Programming & Systems Lab', hours: 3.5 }
+      ]
+    },
+    activities: [
+      { id: 'act-s1', date: '2026-10-25', type: 'exam', title: 'DBMS Midterm Top Scorer', description: 'Ranked 1st in CSE-B with 27/30 in internal evaluation.', score: '27/30', statusBadge: 'Rank 1' }
+    ]
+  }
+];
+
+export const DEMO_USERS: UserAccount[] = [
+  {
+    id: 'user-std-1',
+    name: 'Aarav Sharma',
+    email: 'aarav.sharma@college.edu',
+    role: 'student',
+    studentId: 'std-001',
+    avatar: 'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?w=150&auto=format&fit=crop&q=80',
+    department: 'Computer Science & Engineering'
+  },
+  {
+    id: 'user-std-2',
+    name: 'Rahul Verma (At Risk)',
+    email: 'rahul.verma@college.edu',
+    role: 'student',
+    studentId: 'std-002',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80',
+    department: 'Computer Science & Engineering'
+  },
+  {
+    id: 'user-std-3',
+    name: 'Priya Patel',
+    email: 'priya.patel@college.edu',
+    role: 'student',
+    studentId: 'std-003',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&auto=format&fit=crop&q=80',
+    department: 'Computer Science & Engineering'
+  },
+  {
+    id: 'user-tea-1',
+    name: 'Dr. Rajesh Kulkarni',
+    email: 'rajesh.kulkarni@college.edu',
+    role: 'teacher',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=80',
+    department: 'Dept. of Computer Science & Engineering',
+    designation: 'Professor & Head of Department'
+  },
+  {
+    id: 'user-adm-1',
+    name: 'Academic Dean Office',
+    email: 'dean.academics@college.edu',
+    role: 'admin',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&auto=format&fit=crop&q=80',
+    department: 'Office of Academic Affairs',
+    designation: 'Chief Academic Administrator'
+  }
+];
